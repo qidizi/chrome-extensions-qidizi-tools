@@ -1,0 +1,22 @@
+<div>
+<input type="checkbox" id="hostsSwitch" value="1" /><label for="hostsSwitch">启用hosts管理</label>
+<a href="#0" data-click4="hostsListsShow" title="显示列表,必须启用管理">配置</a>
+</div>
+
+<script id="hostsTplBox" type="text/tpl">
+<a href="#0" data-click4="hostsAdd">增加</a>
+<div id="hostsLists"></div> 
+</script>
+<script id="hostsTplAddForm" type="text/tpl">
+<form id="hostsAdd" class="nowrap">
+IP<input size="10" name="ip" placeholder="255.255.255.255">域名<input size="10" placeholder="*.q.com" name="domain" title="注意:如果域名已经存在列表中,最后添加的域名对应关系才会被保留!域名拼写支持shell匹配方式,如:*.q.com;www.?.com" /> <button type="submit" name="save">保存</button>
+</form>
+</script>
+<script id="hostsTplLists" type="text/tpl">
+{{#each this}}
+<div>
+<span data-index="{{@index}}" class="hosts {{#if on}}enabled{{/if}}" title="{{#if on}}点击禁用{{else}}点击启用{{/if}}" data-click4="hostsHostOn"><span>{{domain}}</span> <span class="arrow">--&gt;</span> <span>{{ip}}</span></span>
+<a href="#0" data-click4="hostsDel" data-index="{{@index}}" title="删除对应关系;不提供编辑,请删除后再添加">删除</a>
+</div>
+{{/each}}
+</script>
