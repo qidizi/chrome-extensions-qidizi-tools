@@ -10,7 +10,7 @@
 	},
 	"background" : {
 		"page" : "html/background.html",
-		"persistent": false //按需运行,而不是持续运行,有效节省性能
+		"persistent": true //按需运行,而不是持续运行,有效节省性能,暂时无法找到合适的方式得到ip,只能开启
 	},
 	"browser_action" : {
 		"default_icon" : {
@@ -35,7 +35,7 @@
 		//"copresence", //dev版本
 		"debugger",
 		"declarativeContent",
-		//"declarativeWebRequest",
+		"declarativeWebRequest",
 		"desktopCapture",
 		//"dns",
 		"downloads",
@@ -60,7 +60,7 @@
 		"privacy",
 		//"processes",
 		"proxy",
-		"pushMessaging",
+		//"pushMessaging",
 		"sessions",
 		//"signedInDevices",
 		"storage",
@@ -75,7 +75,7 @@
 		"ttsEngine",
 		"unlimitedStorage",
 		"webNavigation",
-		//"webRequest",
+		"webRequest",
 		"webRequestBlocking"
 	]
 

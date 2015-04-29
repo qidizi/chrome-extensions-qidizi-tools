@@ -4,10 +4,10 @@ define({
     /* -----已注释的配置继承自 popup.js，仍可以再这里重新定义它----- */
 
     // 对齐方式
-    //align: 'bottom left',
+    //align: 'top left',
     
     // 是否固定定位
-    //fixed: false,
+    fixed: false,
     
     // 对话框叠加高度值(重要：此值不能超过浏览器最大限制)
     //zIndex: 1024,
@@ -19,7 +19,7 @@ define({
     backdropOpacity: 0.7,
 
     // 消息内容
-    content: '<span class="ui-dialog-loading">Loading..</span>',
+    content: '',
     
     // 标题
     title: '',
@@ -57,7 +57,7 @@ define({
     skin: '',
 
     // 是否支持快捷关闭（点击遮罩层自动关闭）
-    quickClose: false,
+    quickClose: true,
 
     // css 文件路径，留空则不会使用 js 自动加载样式
     // 注意：css 只允许加载一个

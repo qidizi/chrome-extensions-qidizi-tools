@@ -19,10 +19,10 @@ define(function (require, exports, module) {
 		obj[domainsKey] = array;
 		chrome.storage.sync.set(obj, todo);
 	}
-	function insertProxys(domain, isDirect){//插入到store
+	function insertProxys(domain){//插入到store
 		getProxys(function(array){	
 			delete array[domain];
-			array[domain] = isDirect;
+			array[domain] = 1;
 			setProxys(array);
 		});
 	}
@@ -36,18 +36,16 @@ define(function (require, exports, module) {
 		array ? todo(array) : getProxys(todo);
 	}
 	function addSubmit() {//增加提交
-		var isDirect = +this.elements.direct.checked;
 		var domainer = this.elements.domain;
-		var domain = $.trim(domainer.value);
-		
-		/* 暂时无法确定shExpMatch的匹配细节,所以这块无法校验
-		if (!/^([\w]+\.)+[a-z]{2,}$/i.test(domain)) {
-			dialog({align: 'top',content:'域名格式不正确!正确例子:www.qidizi.com',quickClose: true}).show(domainer);
+		var domain = $.trim(domainer.value);		
+		/* 暂时无法确定shExpMatch的匹配细节,所以这块无法校验,只是非空检查*/
+		if ('' === domain) {
+			dialog({content:'请输入域名',quickClose:true}).show(domainer);
 			return false;
 		}
-		*/
-		insertProxys(domain, isDirect);
-		$(this.elements.save).show(function(){$(this).text('已保存!')}).delay(1000).show(function(){$(this).text('保存')});
+		
+		insertProxys(domain);
+		$(this.elements.save).show(function(){$(this).text('已保存!')}).delay(1000).show(function(){$(this).text('新增域名')});
 		this.reset();		
 		return false;
 	}
@@ -74,18 +72,14 @@ define(function (require, exports, module) {
 				var html = $('#proxysTplBox').html();
 				html = tparse.compile(html)();
 				dialog({
-					title:'proxys对应关系列表',
+					title:'走代理域名列表管理',
 					quickClose:true,
 					content:html
-				}).show();
+				}).show($('#topLeftDot').get(0));
+				chrome.storage.sync.get(serverKey, function(obj){
+					$('#proxysServer').val(obj[serverKey]||'');
+				});
 				showLists();
-			},
-			proxysAdd:function(){//增加按钮
-				dialog({
-					title:'添加proxys对应关系',
-					content:$('#proxysTplAddForm').html(),
-					quickClose:true
-				}).show();				
 				$('#proxysAdd').submit(addSubmit);
 			},
 			proxysDel:function(){//删除关系

@@ -79,14 +79,14 @@ define(function (require, exports, module) {
 			return false;
 		}
 		
-		/* 暂时无法确定shExpMatch的匹配细节,所以这块无法校验
-		if (!/^([\w]+\.)+[a-z]{2,}$/i.test(domain)) {
-			dialog({align: 'top',content:'域名格式不正确!正确例子:www.qidizi.com',quickClose: true}).show(domainer);
+		
+		if ('' === domain) {
+			dialog({content:'请输入域名',quickClose:true}).show(domainer);
 			return false;
 		}
-		*/
+		
 		insertHosts(ip, domain);
-		$(this.elements.save).show(function(){$(this).text('已保存!')}).delay(1000).show(function(){$(this).text('保存')});
+		$(this.elements.save).show(function(){$(this).text('已保存!')}).delay(1000).show(function(){$(this).text('新增影射')});
 		this.reset();		
 		return false;
 	}
@@ -113,18 +113,11 @@ define(function (require, exports, module) {
 				var html = $('#hostsTplBox').html();
 				html = tparse.compile(html)();
 				dialog({
-					title:'hosts对应关系列表',
+					title:'hosts影射列表管理',
 					quickClose:true,
 					content:html
-				}).show();
+				}).show($('#topLeftDot').get(0));
 				showLists();
-			},
-			hostsAdd:function(){//增加按钮
-				dialog({
-					title:'添加hosts对应关系',
-					content:$('#hostsTplAddForm').html(),
-					quickClose:true
-				}).show();				
 				$('#hostsAdd').submit(addSubmit);
 			},
 			hostsDel:function(){//删除关系

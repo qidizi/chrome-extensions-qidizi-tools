@@ -61,8 +61,8 @@
     position: relative;
     _position: absolute;
     float: right;
-    top: 13px;
-    right: 13px;
+    top: 3px;
+    right: 3px;
     _height: 26px;
     padding: 0 4px;
     font-size: 21px;
@@ -91,19 +91,20 @@
     margin: 0;
     line-height: 1.428571429;
     min-height: 16.428571429px;
-    padding: 15px;
+    padding: 5px;
     overflow:hidden; 
     white-space: nowrap;
     text-overflow: ellipsis;
     font-weight: bold;
     cursor: default;
+	font-size:12px;
 }
 .ui-dialog-body {
-    padding: 20px;
+    padding: 5px;
     text-align: center;
 }
 .ui-dialog-content {
-    display: inline-block;
+    /*display: inline-block;*/
     position: relative;
     vertical-align: middle;
     *zoom: 1;
@@ -111,7 +112,7 @@
     text-align: left;
 }
 .ui-dialog-footer {
-    padding: 0 20px 20px 20px;
+    padding: 2px;
 }
 .ui-dialog-statusbar {
     float: left;
@@ -141,10 +142,9 @@
     width:auto;
     overflow:visible;
     display: inline-block;
-    padding: 6px 12px;
     _margin-left: 5px;
     margin-bottom: 0;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: normal;
     line-height: 1.428571429;
     text-align: center;

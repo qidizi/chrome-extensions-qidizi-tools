@@ -4,20 +4,19 @@
 </div>
 
 <script id="proxysTplBox" type="text/tpl">
-<a href="#0" data-click4="proxysAdd">增加</a>
-<br >
-server <input id="proxysServer" placeholder="PROXY 127.0.0.1:1080; SOCKS5 127.0.0.1:1080; DIRECT;" title="自己编写proxy pac中FindProxyForURL方法的return 语句形式;留空禁用proxy功能;" size="50" class="proxyServer" /> <a href="#0" data-click4="proxysServerApply">应用</a>
+
+<form id="proxysAdd" class="nowrap">
+<input size="50" placeholder="*.q.com" name="domain" title="注意:如果域名已经存在列表中,最后添加的域名对应关系才会被保留!域名拼写支持shell匹配方式,如:*.q.com;www.?.com" /> <button type="submit" name="save">新增域名</button>
+</form>
+<input id="proxysServer" placeholder="PROXY 127.0.0.1:1080; SOCKS5 127.0.0.1:1080; DIRECT;" title="自己编写proxy pac中FindProxyForURL方法的return 语句形式;留空禁用proxy功能;" size="50" class="proxyServer" /> <a href="#0" data-click4="proxysServerApply" title="刷新代理服务器配置">应用服务器</a>
 <div id="proxysLists"></div> 
 </script>
 <script id="proxysTplAddForm" type="text/tpl">
-<form id="proxysAdd" class="nowrap">
-域名<input size="10" placeholder="*.q.com" name="domain" title="注意:如果域名已经存在列表中,最后添加的域名对应关系才会被保留!域名拼写支持shell匹配方式,如:*.q.com;www.?.com" /> <input type="checkbox" value="1" name="direct" id="proxysDirect" title="勾选变直通,不走代理" /> <label for="proxysDirect" title="直接联网,不走代理">直通</label><button type="submit" name="save">保存</button>
-</form>
 </script>
 <script id="proxysTplLists" type="text/tpl">
 {{#each this as |val key|}}
 <div>
-<span data-index="{{key}}" class="proxys {{#if val}}proxy{{else}}direct{{/if}}" ><span>{{key}}</span> <span class="arrow">--&gt;</span> <span>{{#if val}}代理{{else}}直联{{/if}}</span></span>
+{{key}}
 <a href="#0" data-click4="proxysDel" data-index="{{key}}" title="删除对应关系;不提供编辑,请删除后再添加">删除</a>
 </div>
 {{/each}}

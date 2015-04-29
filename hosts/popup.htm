@@ -4,13 +4,11 @@
 </div>
 
 <script id="hostsTplBox" type="text/tpl">
-<a href="#0" data-click4="hostsAdd">增加</a>
-<div id="hostsLists"></div> 
-</script>
-<script id="hostsTplAddForm" type="text/tpl">
 <form id="hostsAdd" class="nowrap">
-IP<input size="10" name="ip" placeholder="255.255.255.255">域名<input size="10" placeholder="*.q.com" name="domain" title="注意:如果域名已经存在列表中,最后添加的域名对应关系才会被保留!域名拼写支持shell匹配方式,如:*.q.com;www.?.com" /> <button type="submit" name="save">保存</button>
+<input size="30" placeholder="*.q.com" name="domain" title="注意:如果域名已经存在列表中,最后添加的域名对应关系才会被保留!域名拼写支持shell匹配方式,如:*.q.com;www.?.com" /> <input size="10" name="ip" placeholder="255.255.255.255"> <button type="submit" name="save">新增影射</button>
 </form>
+
+<div id="hostsLists"></div> 
 </script>
 <script id="hostsTplLists" type="text/tpl">
 {{#each this}}

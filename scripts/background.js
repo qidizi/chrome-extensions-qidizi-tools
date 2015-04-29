@@ -1,1 +1,1 @@
-seajs.use('proxy');
+seajs.use(['chrome-proxy', 'chrome-tab']);

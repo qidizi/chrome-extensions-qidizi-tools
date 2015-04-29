@@ -5,9 +5,10 @@ button{border:1px solid darkgray;border-radius:3px;}
 .nowrap{white-space:nowrap;}
 
 /*popup页面*/
-#popup{min-height:500px;min-width:500px;}
+#popup{min-height:300px;min-width:500px;}
 #popup .arrow{color:lightgray;}
 #popup .proxyServer{font-size:11px;}
 #hostsLists{max-height:200px;overflow:auto;}
 #hostsLists span.enabled{color:green;font-weight:bold;}
 #hostsLists span.hosts{cursor:pointer;}
+#proxysLists{max-height:200px;overflow:auto;}
