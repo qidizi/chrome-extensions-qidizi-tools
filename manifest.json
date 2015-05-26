@@ -35,7 +35,7 @@
 		//"copresence", //dev版本
 		"debugger",
 		"declarativeContent",
-		"declarativeWebRequest",
+		//"declarativeWebRequest",
 		"desktopCapture",
 		//"dns",
 		"downloads",
