@@ -3,4 +3,4 @@ seajs.config({
 		jquery:'jquery'
 	}
 });
-seajs.use(['./../hosts/main','./../proxys/main']);
+seajs.use(['./../hosts/main','./../proxys/main', './../translate/main']);

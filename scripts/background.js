@@ -1,1 +1,1 @@
-seajs.use(['chrome-proxy', 'chrome-tab']);
+seajs.use(['chrome-proxy', 'chrome-tab', 'translate']);
