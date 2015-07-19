@@ -146,7 +146,7 @@
     document.addEventListener('mouseup',function(ev){
         var ev=ev||window.event, text;
         
-        if (!ev.altKey || 1 !== ev.which || !(text = getSelectedText()).length ) {//要按下alt键,且是左键
+        if (/*!ev.altKey ||*/ 1 !== ev.which || !(text = getSelectedText()).length ) {//要按下alt键,且是左键
             return;
         }
         
