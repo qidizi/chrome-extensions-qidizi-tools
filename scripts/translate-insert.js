@@ -1,11 +1,12 @@
 /*
 注入式的翻译功能
 */
-+function() {    
-    if (!document.documentElement || !document.documentElement.appendChild) {
++function() {
+    if (!document.documentElement || !document.documentElement.appendChild || window.qidiziToolTranslate) {
         return;
     }
-
+    
+    window.qidiziToolTranslate = 1;//防止多次注入重复绑定
     var _O = {};
     function html2text (html) {
         return html.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
