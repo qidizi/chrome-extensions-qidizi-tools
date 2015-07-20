@@ -106,7 +106,7 @@
     }
     
     //显示
-    function show (html, cls) {
+    function show (html) {
         if (!_O.shower) {
             _O.shower = document.createElement('DIV');
             _O.shower.style.position = 'fixed';
@@ -135,11 +135,16 @@
             }
         }
         
+        _O.showerShow = 1;
+        
+        if ('' === html) {
+            return;
+        }
+        
         var row = document.createElement('DIV');
         row.style.padding =  "10px";
         row.innerHTML = html;
         _O.showContext.appendChild(row);  
-        _O.showerShow = 1;        
     }
     
     //绑定鼠标抬起事件,如果是输入框中虽然可以使用onselect来启动
@@ -171,6 +176,9 @@
         
         //点击其它位置,隐藏
         if (_O.shower !== el) {
+            //清空内容,防止读音继续在背后播放
+            _O.showCLS = 1;
+            show('', 1);
             _O.shower.style.display = 'none';
             _O.showerShow = 0;
         }
