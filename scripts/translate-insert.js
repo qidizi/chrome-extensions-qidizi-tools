@@ -46,15 +46,15 @@
         
         if (obj.basic) {            
             if (obj.basic['phonetic']) {
-                html += ' [<strong style="color:blue;">' +obj.basic['phonetic']+ '</strong>]';
+                html += ' [<strong style="color:blue;font-size:16px;">' +obj.basic['phonetic']+ '</strong>]';
             }      
             
             if (obj.basic['us-phonetic']) {
-                html += ' US[<strong style="color:blue;">' +obj.basic['us-phonetic']+ '</strong>]';
+                html += ' US[<strong style="color:blue;font-size:16px;">' +obj.basic['us-phonetic']+ '</strong>]';
             }  
             
             if (obj.basic['uk-phonetic']) {
-                html += ' UK[<strong style="color:blue;">' +obj.basic['uk-phonetic']+ '</strong>]';
+                html += ' UK[<strong style="color:blue;font-size:16px;">' +obj.basic['uk-phonetic']+ '</strong>]';
             }
         
             if (obj.basic.explains && obj.basic.explains.length) {
