@@ -6,7 +6,10 @@
 <script id="proxysTplBox" type="text/tpl">
 
 <form id="proxysAdd" class="nowrap">
-<input size="50" placeholder="*.q.com" name="domain" title="注意:如果域名已经存在列表中,最后添加的域名对应关系才会被保留!域名拼写支持shell匹配方式,如:*.q.com;www.?.com" /> <button type="submit" name="save">新增域名</button>
+<input size="50" placeholder="*.q.com" name="domain" title="注意:如果域名已经存在列表中,最后添加的域名对应关系才会被保留!
+域名拼写支持shell匹配方式,如:*.q.com;www.?.com
+如果需要全部域名都启用代理请输入一条记录*;
+" /> <button type="submit" name="save">新增域名</button>
 </form>
 <input id="proxysServer" placeholder="PROXY 127.0.0.1:1080; SOCKS5 127.0.0.1:1080; DIRECT;" title="自己编写proxy pac中FindProxyForURL方法的return 语句形式;留空禁用proxy功能;" size="50" class="proxyServer" /> <a href="#0" data-click4="proxysServerApply" title="刷新代理服务器配置">应用服务器</a>
 <div id="proxysLists"></div> 
