@@ -35,29 +35,40 @@
             return show('获取有道翻译出错:' + error[obj.errorCode]);
         }    
         
-        var html = '<a href="https://www.baidu.com/s?ie=utf-8&wd=' +encodeURIComponent(obj.query)+ '" target="_blank" title="点击百度查询">' +html2text(obj.query) +'</a><hr>';
+        var html = '<a href="https://www.baidu.com/s?ie=utf-8&wd=' +encodeURIComponent(obj.query)+ '" target="_blank" title="点击百度查询">' +html2text(obj.query) +'</a>';
         
+        
+        // 模拟人声读音;注意这个并非官方文档提供的api,百度出来的,不保证后期也可以使用
+        // 同时也没有方法得知是否存在这个读音流,只能尝试播放,失败就说明不存在;
+        // 后期如果更改或是其它公司提供api也可以使用;
+        html += ' <audio src="http://dict.youdao.com/dictvoice?audio=' +encodeURIComponent(obj.query)+ '" autoplay="autoplay" style="width:46px;" controls="controls" ></audio> ';
+        
+        if (obj.basic) {
+                       
+            if (obj.basic['phonetic']) {//默认发音
+                html += ' [<strong style="color:blue;font-size:16px;">' +obj.basic['phonetic']+ '</strong>]';
+            }      
+            
+            if (obj.basic['us-phonetic']) {//us发音
+                html += ' US[<strong style="color:blue;font-size:16px;">' +obj.basic['us-phonetic']+ '</strong>]';
+            }  
+            
+            if (obj.basic['uk-phonetic']) {//uk发音
+                html += ' UK[<strong style="color:blue;font-size:16px;">' +obj.basic['uk-phonetic']+ '</strong>]';
+            }
+        }
+        
+        html += '<hr>';
+        
+        // 最准确的一个中文翻译
         if (obj.translation) {
             html += obj.translation;
         }        
         
-        //尝试发音,注意这个并非官方文档,百度出来的,不保证后期也可以使用
-        html += ' <audio src="http://dict.youdao.com/dictvoice?audio=' +encodeURIComponent(obj.query)+ '" autoplay="autoplay" style="width:46px;" controls="controls" ></audio> ';
         
-        if (obj.basic) {            
-            if (obj.basic['phonetic']) {
-                html += ' [<strong style="color:blue;font-size:16px;">' +obj.basic['phonetic']+ '</strong>]';
-            }      
-            
-            if (obj.basic['us-phonetic']) {
-                html += ' US[<strong style="color:blue;font-size:16px;">' +obj.basic['us-phonetic']+ '</strong>]';
-            }  
-            
-            if (obj.basic['uk-phonetic']) {
-                html += ' UK[<strong style="color:blue;font-size:16px;">' +obj.basic['uk-phonetic']+ '</strong>]';
-            }
+        if (obj.basic) { 
         
-            if (obj.basic.explains && obj.basic.explains.length) {
+            if (obj.basic.explains && obj.basic.explains.length) {//更加展开中文解释
                 html += '<br>' +obj.basic.explains.join('<br>')
                      + '<br>';
             }
