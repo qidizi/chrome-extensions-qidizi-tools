@@ -39,7 +39,8 @@ define(function (require, exports, module) {
 	}
 	function insertHosts(ip, domain){//插入到store
 		getHosts(function(array){	
-			array = cleanDomain(array, domain);
+            // 允许重复关系存在
+			//array = cleanDomain(array, domain);
 			array.push({
 				ip:ip,
 				domain:domain
