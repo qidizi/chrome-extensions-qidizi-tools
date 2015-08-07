@@ -68,11 +68,11 @@
 
 			if (obj.basic['phonetic']) { //默认发音:应该是英式
 				voiceSrc = 'http://dict.youdao.com/dictvoice?type=1&audio=' + encodeURIComponent(obj.query);
-				html += ' UK[<a style="color:blue;font-size:16px;font-weight:bold;" href="javascript:void(0);" data-voice="' + voiceSrc + '">' + obj.basic['phonetic'] + '</a>]';
+				html += ' UK[<a style="color:blue;font-size:16px;font-weight:bold;" href="javascript:void(0);" data-voice="' + voiceSrc + '" title="点击这里播放发音">' + obj.basic['phonetic'] + '</a>]';
 			}
 
 			if (obj.basic['us-phonetic']) { //us发音
-				html += ' US[<a style="color:blue;font-size:16px;" href="javascript:void(0);" data-voice="http://dict.youdao.com/dictvoice?type=2&audio=' + encodeURIComponent(obj.query) + '">' + obj.basic['us-phonetic'] + '</a>] ';
+				html += ' US[<a style="color:blue;font-size:16px;" href="javascript:void(0);" data-voice="http://dict.youdao.com/dictvoice?type=2&audio=' + encodeURIComponent(obj.query) + '" title="点击这里播放发音">' + obj.basic['us-phonetic'] + '</a>] ';
 			}
 		}
 
