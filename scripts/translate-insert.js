@@ -200,13 +200,13 @@
 			v.currentTime = 0;
 			v.play();
 		}
-        
-        function playSrc (src) {
-            v.pause();
-            v.src = src;
-            v.load();
-            v.play();
-        }
+
+		function playSrc(src) {
+			v.pause();
+			v.src = src;
+			v.load();
+			v.play();
+		}
 
 		if (!v) {
 			return;
@@ -225,7 +225,7 @@
 			return;
 		}
 
-		if (currentSrc == defaultSrc) {// 播放器就是默认的
+		if (currentSrc == defaultSrc) { // 播放器就是默认的
 			replay();
 			return;
 		}
@@ -234,7 +234,7 @@
 	}
 	//点击声音a时处理
 	function isClickVoice(ev) {
-        var el = ev.srcElement;
+		var el = ev.srcElement;
 		var src = el.getAttribute('data-voice');
 
 		if (el.tagName.toLowerCase() !== 'a' || !src) {
@@ -259,9 +259,9 @@
 		//窗口失去焦点,隐藏show
 		_O.showerShow && panelSwitch(0);
 	});
-    document.addEventListener('click', function(ev){
-        isClickVoice(ev);
-    });
+	document.addEventListener('click', function (ev) {
+		isClickVoice(ev);
+	});
 	//绑定up事件
 	document.addEventListener('mouseup', function (ev) {
 		//点击非show区域,隐藏show
