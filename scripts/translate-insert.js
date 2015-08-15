@@ -85,7 +85,7 @@
 			return show('获取有道翻译出错:' + error[obj.errorCode]);
 		}
 
-		var html = '<a href="https://www.baidu.com/s?ie=utf-8&wd=' + encodeURIComponent(obj.query) + '" target="_blank" title="这是有道词典的结果;点击百度查询">' + html2text(obj.query) + '</a>';
+		var html = '<a href="http://cn.bing.com/dict/dict?q=' + encodeURIComponent(obj.query) + '" target="_bing" title="点击必应词典查询">' + html2text(obj.query) + '</a>';
 		var voiceSrc = '';
 
 		if (obj.basic) {
@@ -219,6 +219,7 @@
 	function requestAPI(text) {
 		_O.requestError = 0;
 		_O.showCLS = 1;
+		getBing(text);
 		youDaoJSONP(text); //获取有道的
 	}
 	//播放声音:防止重复加载相同音源
@@ -272,6 +273,51 @@
 
 		playVoice(src);
 	}
+
+	function xhr(url, callBack) {
+		var xmlhttp = new XMLHttpRequest();
+		xmlhttp.onreadystatechange = function () {
+			if (xmlhttp.readyState == 4) { // 4 = "loaded"
+				if (xmlhttp.status == 200) { // 200 = OK
+					callBack(xmlhttp.responseText);
+				} else {
+					show('翻译插件通过xhr获取数据出错:' + url);
+				}
+			}
+		};
+		var async = true; //异步
+		var method = "get";
+		xmlhttp.open(method, url, async);
+		var postData = null;
+		xmlhttp.send(postData);
+	}
+	//必应的词典
+	// 并不提供api,只能使用html来自己提取
+	function getBing(text) {
+		xhr('http://cn.bing.com/dict/search?q=' + encodeURIComponent(text), function (data) {
+			var html = '<style>div.bing{border-top:1px solid darkgray;}div.bing div.se_div,div.bing div.wd_div, div.bing div.df_div,div.bing div.img_area{display:none;}div.bing div.in_tip{background-color:#f9f5dd;padding:5px;}div.bing div.hd_div h1{font-size:14px;margin:0px;}div.bing a.bigaud,div.bing a.bigaud_f{background:url(http://cn.bing.com/s/live/icon.png?v=2) no-repeat -358px 0;display:inline-block;width:20px;height:20px;}div.bing div.hd_pr,div.bing div.hd_tf,div.bing div.hd_prUS{display:inline;}div.bing li{list-style:none;}div.bing ul{margin-left:0px;}</style>';
+			html += '<div class="bing"><div>必应词典</div>';
+			//提取整个翻译部分,然后再去掉不需要的
+			var ma = data.match(/<div\s+class\="lf_area">([\s\S]+?)<\/div>\s*<div\s+class\="sidebar">/i);
+
+			if (ma) {
+                var ma = ma[1];
+                ma = ma.replace(/onmouseover|onmouseout/gi, 'mo').replace(/\sonclick[^>]+?(http\:.+?\.mp3)/gi, /data-voice="$1" oc="/);
+                //console.log(ma)
+				html += ma;
+			}
+
+			html += '</div>';
+			show(html);
+		});
+	}
+	function id(id) {
+		return document.getElementById(id);
+	}
+	//去掉标签
+	function trimHtml(text) {
+		return text.replace(/<[^>]+>/g, '');
+	}
 	function createPanel() {
 
 		//延后插入,防止body不存在.出现相对定位变绝对定位问题
@@ -285,25 +331,23 @@
 			return;
 		}
 
-		//创建面板
-
 		_O.shower = document.createElement('DIV');
 		_O.shower.className = 'chromeQidiziTranslatePanel';
 		_O.shower.title = '点击框外关闭';
 		document.body.appendChild(_O.shower);
 		_O.shower.innerHTML = '<style> \
-																								.chromeQidiziTranslatePanel{position:fixed;left:50px;bottom:0;border:1px solid lightgray;border-radius:5px;padding-right:0px;background-color:white;color:black;z-index:999999999999999;max-height:100%;font-size:12px;overflow:auto;white-space:nowrap;display:none;} \
-																								.chromeQidiziTranslatePanel *{float:none!important;position:static!important;} \
-																								.chromeQidiziTranslatePanel .voice{color:blue;font-size:16px;font-weight:bold;} \
-																								.chromeQidiziTranslatePanel .query{display:block;line-height:12px;font-size:12px;color:blue;width:100%;border:1px solid gray;background-color:transparent;border-radius:3px;} \
-																								    </style> \
-																								    <audio id="chromeQidiziTranslateVoice"  autoplay="autoplay" style="display:none;"></audio>\
-																								    <span style="display:block;overflow:hidden;height:1px;width:1px;">\
-																								    <input name="focuser" />\
-																								    </span>\
-																								    </div><div></div>\
-																								    <input class="query" placeholder="输入单词反选翻译" onmouseover="this.focus;this.select();" />\
-																								    ';
+																																	.chromeQidiziTranslatePanel{position:fixed;left:50px;bottom:0;border:1px solid lightgray;border-radius:5px;padding-right:0px;background-color:white;color:black;z-index:999999999999999;max-height:100%;font-size:12px;overflow:auto;white-space:nowrap;display:none;} \
+																																	.chromeQidiziTranslatePanel *{float:none!important;position:static!important;} \
+																																	.chromeQidiziTranslatePanel .voice{color:blue;font-size:16px;font-weight:bold;} \
+																																	.chromeQidiziTranslatePanel .query{display:block;line-height:12px;font-size:12px;color:blue;width:100%;border:1px solid gray;background-color:transparent;border-radius:3px;} \
+																																	    </style> \
+																																	    <audio id="chromeQidiziTranslateVoice"  autoplay="autoplay" style="display:none;"></audio>\
+																																	    <span style="display:block;overflow:hidden;height:1px;width:1px;">\
+																																	    <input name="focuser" />\
+																																	    </span>\
+																																	    </div><div></div>\
+																																	    <input class="query" placeholder="输入单词反选翻译" onmouseover="this.focus;this.select();" />\
+																																	    ';
 		_O.showContext = _O.shower.getElementsByTagName('DIV')[0];
 		_O.focuser = _O.shower.getElementsByTagName('INPUT')[0];
 	}
