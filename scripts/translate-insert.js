@@ -296,7 +296,7 @@
 	function getBing(text) {
 		xhr('http://cn.bing.com/dict/search?q=' + encodeURIComponent(text), function (data) {
 			var voiceSrc = '';
-			var html = '<style>div.bing{border-top:1px solid darkgray;}div.bing div.se_div,div.bing div.wd_div, div.bing div.df_div,div.bing div.img_area{display:none;}div.bing div.in_tip{background-color:#f9f5dd;padding:5px;}div.bing div.hd_div h1{font-size:14px;margin:0px;line-height:14px;padding:0px;}div.bing a.bigaud,div.bing a.bigaud_f{background:url(http://cn.bing.com/s/live/icon.png?v=2) no-repeat -358px 0;display:inline-block;width:20px;height:20px;}div.bing div.hd_pr,div.bing div.hd_tf,div.bing div.hd_prUS{display:inline;}div.bing li{list-style:none;}div.bing ul{margin-left:0px;}</style>';
+			var html = '<style>div.bing{border-top:1px solid darkgray;}div.bing div.se_div,div.bing div.wd_div, div.bing div.df_div,div.bing div.img_area,div.bing li span.web{display:none;}div.bing div.in_tip{background-color:#f9f5dd;padding:5px;}div.bing div.hd_div h1{font-size:14px;margin:0px;line-height:14px;padding:0px;}div.bing a.bigaud,div.bing a.bigaud_f{background:url(http://cn.bing.com/s/live/icon.png?v=2) no-repeat -358px 0;display:inline-block;width:20px;height:20px;}div.bing div.hd_pr,div.bing div.hd_tf,div.bing div.hd_prUS{display:inline;}div.bing li{list-style:none;}div.bing ul{margin-left:0px;}</style>';
 			html += '<div class="bing"><div>必应词典</div>';
 			//提取整个翻译部分,然后再去掉不需要的
 			var ma = data.match(/<div\s+class\="lf_area">([\s\S]+?)<\/div>\s*<div\s+class\="sidebar">/i);
