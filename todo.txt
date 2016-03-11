@@ -1,0 +1,1 @@
+//pac不支持https，除非使用https请求转http的方式来处理， 否则出现 ERR_TUNNEL_CONNECTION_FAILED

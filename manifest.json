@@ -1,26 +1,26 @@
 {
-	"name" : "Q工具集",
-	"version" : "1.0",
-	"manifest_version" : 2,
-	"description" : "chrome的工具集合",
-	"offline_enabled" : false,
-	"content_security_policy":"script-src 'self' 'unsafe-eval'; object-src 'self';style-src 'self' 'unsafe-inline'",//定义策略允许inline加载其它js,允许jquery的innerhtml
-	"icons" : {
-		"16" : "images/icon.png"
+	"name": "Q工具集",
+	"version": "1.0",
+	"manifest_version": 2,
+	"description": "chrome的工具集合",
+	"offline_enabled": false,
+	"content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self';style-src 'self' 'unsafe-inline'",
+	"icons": {
+		"16": "images/icon.png"
 	},
-	"background" : {
-		"page" : "html/background.html",
-		"persistent": true //按需运行,而不是持续运行,有效节省性能,暂时无法找到合适的方式得到ip,只能开启
+	"background": {
+		"page": "html/background.html",
+		"persistent": true
 	},
-	"browser_action" : {
-		"default_icon" : {
-			"19" : "images/icon.png"
+	"browser_action": {
+		"default_icon": {
+			"19": "images/icon.png"
 		},
-		"default_title" : "Q工具集", // 可选，在工具提示中显示
-		"default_popup" : "html/popup.html", // 可选
-		"null" : null
+		"default_title": "Q工具集",
+		"default_popup": "html/popup.html",
+		"null": null
 	},
-	"permissions" : [//允许全部权限
+	"permissions": [
 		"<all_urls>",
 		"activeTab",
 		"alarms",
@@ -32,37 +32,24 @@
 		"contentSettings",
 		"contextMenus",
 		"cookies",
-		//"copresence", //dev版本
 		"debugger",
 		"declarativeContent",
-		//"declarativeWebRequest",
 		"desktopCapture",
-		//"dns",
 		"downloads",
-		//"enterprise.platformKeys",
-		//"experimental",
-		//"fileBrowserHandler",
 		"fontSettings",
 		"gcm",
 		"geolocation",
 		"history",
 		"identity",
 		"idle",
-		//"idltest",
-		//"infobars",
-		//"location",
 		"management",
 		"nativeMessaging",
-		//"notificationProvider",
 		"notifications",
 		"pageCapture",
 		"power",
 		"privacy",
-		//"processes",
 		"proxy",
-		//"pushMessaging",
 		"sessions",
-		//"signedInDevices",
 		"storage",
 		"system.cpu",
 		"system.display",
@@ -76,7 +63,9 @@
 		"unlimitedStorage",
 		"webNavigation",
 		"webRequest",
-		"webRequestBlocking"
+		"webRequestBlocking",
+		"https://*/*",
+		"http://*/*"
 	]
 
 }

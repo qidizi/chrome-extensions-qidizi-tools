@@ -4,6 +4,10 @@
 define(function (require, exports, module) {
 	var stkey = 'translate';
 	function todo(tid) {
+		if (tid < 1) {
+			return;
+		}
+		
 		//把翻译功能js插入tab页面
 		chrome.tabs.executeScript(tid, {
 			file : 'scripts/translate-insert.js',

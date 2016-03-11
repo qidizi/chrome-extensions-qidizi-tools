@@ -220,7 +220,7 @@
 		_O.requestError = 0;
 		_O.showCLS = 1;
 		getBing(text);
-		//youDaoJSONP(text); //获取有道的, 鉴于有道的词典结果不正确,禁用,有需要的,可以直接去掉注释启用;
+		youDaoJSONP(text); //获取有道的, 鉴于有道的词典结果不正确,禁用,有需要的,可以直接去掉注释启用;
 	}
 	//播放声音:防止重复加载相同音源
 	function playVoice(src) {

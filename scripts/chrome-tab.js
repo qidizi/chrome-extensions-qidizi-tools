@@ -2,11 +2,17 @@
 chrome tab
  */
 define(function (require, exports, module) {
+    return; //因为会导致控制面板中的network响应信息不能显示，临时不使用，后期可以使用点击测试的方式来确认当前域名是否指向本地
 	function todo(details) {
 		//console.log(arguments);return;
 		//在当前tab页面显示当前的ip信息
 		var ip = details.ip;
 		var tid = details.tabId;
+
+        if (tid < 1) {
+            return;
+        }
+        
 		chrome.tabs.executeScript(tid, {
 			code : '+function(){\
 						            var ip=document.createElement("div");\

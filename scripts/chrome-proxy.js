@@ -54,8 +54,29 @@ define(function (require, exports, module) {
 			},
 
 			function getPort(url) {
-				var url = url.match(/^(?:\w+[\:\/]+)[^\:\/]+(\:\d+)/);
-				return url ? url[1] : 80;
+				var pro = url.toLowerCase().match(/^(\w+)\:\/{2,}/);
+				pro = pro ? pro[1] : '';
+				var port = 80;
+
+				switch (pro) {
+					case 'http':
+						port = 80;
+						break;
+					case 'https'://pac不支持https，除非使用https请求转http的方式来处理，
+						port = 443;
+						break;
+					case 'ftp':
+						port = 25;
+						break;
+				}
+
+				var tp = url.toLowerCase().match(/[\w]+\:(\d+)/);
+
+				if (tp) {
+					port = tp[1];
+				}
+
+				return port;
 			},
 
 			function http(hostname, url) {
@@ -65,7 +86,7 @@ define(function (require, exports, module) {
 			function FindProxyForURL(url, host) { //host:only hostname,not include port; url:not include hash
 				//hosts hight level
 				var tmp;
-				
+
 				if (cfg[hostsOn] && cfg[hostsKey]) {
 					if (tmp = cfg[hostsKey][host]) {
 						return http(tmp, url);//string full match 

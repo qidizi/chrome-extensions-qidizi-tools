@@ -11,7 +11,7 @@
 如果需要全部域名都启用代理请输入一条记录*;
 " /> <button type="submit" name="save">新增域名</button>
 </form>
-<input id="proxysServer" placeholder="PROXY 127.0.0.1:1080; SOCKS5 127.0.0.1:1080; DIRECT;" title="自己编写proxy pac中FindProxyForURL方法的return 语句形式;留空禁用proxy功能;" size="50" class="proxyServer" /> <a href="#0" data-click4="proxysServerApply" title="刷新代理服务器配置">应用服务器</a>
+<input id="proxysServer" value="PROXY 127.0.0.1:1080;DIRECT;" placeholder="PROXY 127.0.0.1:1080; SOCKS5 127.0.0.1:1080; DIRECT;" title="自己编写proxy pac中FindProxyForURL方法的return 语句形式;留空禁用proxy功能;建议使用SOCKS5,速度快;但是http兼容性更高,像ie就不支持socks5" size="50" class="proxyServer" /> <a href="#0" data-click4="proxysServerApply" title="刷新代理服务器配置">应用服务器</a>
 <div id="proxysLists"></div> 
 </script>
 <script id="proxysTplAddForm" type="text/tpl">
